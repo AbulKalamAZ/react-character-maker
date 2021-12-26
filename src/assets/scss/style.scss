@@ -1,0 +1,70 @@
+#container {
+  position: absolute;
+  margin: auto;
+  width: 1000px;
+  height: 1123px;
+}
+
+#body {
+  position: absolute;
+  width: 794px; /* width of actual image */
+  height: 1123px; /* height of actual image */
+  background-image: url("../img/body.png");
+  background-repeat: no-repeat;
+}
+
+#background {
+  bottom: 1246px;
+  right: 1119px;
+  position: absolute;
+}
+
+#eyes,
+#ears,
+#nose,
+#mouth,
+#clothes {
+  position: absolute;
+  width: 794px; /* width of actual image */
+  height: 1123px; /* height of actual image */
+}
+
+// update this map when new items or categories are added
+$items: (
+  "eyes": 9,
+  "ears": 3,
+  "mouth": 4,
+  "nose": 3,
+  "clothes": 3,
+);
+
+@each $item, $total in $items {
+  @for $i from 1 through $total {
+    .#{$item}#{$i} {
+      background-image: url(../img/#{$item}/#{$item}#{$i}.png);
+    }
+  }
+}
+
+// Position "next" buttons
+
+$height: 410px;
+
+@each $item, $total in $items {
+  $height: $height + 30px;
+
+  #next#{$item} {
+    position: absolute;
+    left: 600px;
+    top: $height;
+  }
+}
+
+// Position "randomize" button
+
+#randomize {
+  position: absolute;
+  left: 600px;
+  top: 600px;
+  font-weight: bold;
+}
